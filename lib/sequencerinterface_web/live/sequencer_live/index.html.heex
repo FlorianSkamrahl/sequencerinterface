@@ -1,0 +1,66 @@
+
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.sequencer_index_path(@socket, :index)}>
+    <.live_component
+      module={SequencerinterfaceWeb.SequencerLive.FormComponent}
+      id={@sequencer.id || :new}
+      title={@page_title}
+      action={@live_action}
+      sequencer={@sequencer}
+      return_to={Routes.sequencer_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<!--
+<table>
+  <thead>
+    <tr>
+      <th>Color</th>
+      <th>Velocity</th>
+      <th>Scale</th>
+      <th>Padid</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="sequencerpad">
+    <%= for sequencer <- @sequencerpad do %>
+      <tr id={"sequencer-#{sequencer.id}"}>
+        <td><%= sequencer.color %></td>
+        <td><%= sequencer.velocity %></td>
+        <td><%= sequencer.scale %></td>
+        <td><%= sequencer.padid %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.sequencer_show_path(@socket, :show, sequencer) %></span>
+          <span><%= live_patch "Edit", to: Routes.sequencer_index_path(@socket, :edit, sequencer) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: sequencer.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>-->
+
+<!--<span><%= live_patch "New Sequencer", to: Routes.sequencer_index_path(@socket, :new) %></span>-->
+
+
+
+
+  <div class="grid grid-cols-4 grid-flow-col gap-4">
+      <div class="py-2">
+      <button phx-click="clear" class="float-right bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Clear</button>
+    </div>
+        <div class="py-2">
+      <button phx-click="calibrate" class="float-right bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Calibrate</button>
+    </div>
+  </div>
+
+
+
+  <div id="sequencerpad-grid" class="grid grid-cols-8 gap-4" phx-update="prepend">
+    <%= for sequencer <- @sequencerpad  do %>
+      <%= live_component SequencerinterfaceWeb.SequencerLive.SequencerpadComponent, id: sequencer.id, sequencer: sequencer  %>
+    <% end %>
+  </div>

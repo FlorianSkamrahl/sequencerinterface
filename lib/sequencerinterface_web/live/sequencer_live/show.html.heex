@@ -1,0 +1,41 @@
+<h1>Show Sequencer</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.sequencer_show_path(@socket, :show, @sequencer)}>
+    <.live_component
+      module={SequencerinterfaceWeb.SequencerLive.FormComponent}
+      id={@sequencer.id}
+      title={@page_title}
+      action={@live_action}
+      sequencer={@sequencer}
+      return_to={Routes.sequencer_show_path(@socket, :show, @sequencer)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Color:</strong>
+    <%= @sequencer.color %>
+  </li>
+
+  <li>
+    <strong>Velocity:</strong>
+    <%= @sequencer.velocity %>
+  </li>
+
+  <li>
+    <strong>Scale:</strong>
+    <%= @sequencer.scale %>
+  </li>
+
+  <li>
+    <strong>Padid:</strong>
+    <%= @sequencer.padid %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.sequencer_show_path(@socket, :edit, @sequencer), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.sequencer_index_path(@socket, :index) %></span>
