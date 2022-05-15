@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres
+    container_name: sequencerinterfacepostgres
+    ports:
+      - "6000:5432"
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+      POSTGRES_HOST_AUTH_METHOD: trust
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    volumes:
+      - 'pgdata:/var/lib/postgresql/data'
+
+  elixir:
+    build: .
+    ports:
+     - "4000:4000"
+    env_file:
+      - .env
+    container_name: sequencerinterfaceelixir
+    volumes:
+      - .:/sequencerinterface_app_files
+    #volumes:
+    #  - .:/app
+    #environment:
+      #- SECRET_KEY_BASE=${SECRET_KEY_BASE}
+      # Modify your config files (dev.exs and test.exs) so that the password and hostname can be overridden
+      # when environment variables are set:
+      # password: System.get_env("DB_PASS", "postgres"),
+      # hostname: System.get_env("DB_HOST", "localhost"),
+      #- DB_PASS=${DB_PASS}
+      #- DB_HOST=${DB_HOST}
+    #  - DB_PASS=postgres
+    #  - DB_HOST=postgres
+    #  - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+    #  - DATABASE_DB=${DATABASE_DB} 
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:
