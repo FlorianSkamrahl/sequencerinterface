@@ -18,7 +18,7 @@
 #initialy add 64 sequencerpads
 
 for current_index <- 0..63 do
-  row = ceil(current_index / 8)
+  row = ceil((current_index - 7)/8)
   {:ok, _} = Sequencerinterface.Sequencers.create_sequencer(
     %{
       color: rem(current_index, 4),
