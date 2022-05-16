@@ -17,7 +17,7 @@
 
 #initialy add 64 sequencerpads
 
-for current_index <- 1..64 do
+for current_index <- 0..63 do
   row = ceil(current_index / 8)
   {:ok, _} = Sequencerinterface.Sequencers.create_sequencer(
     %{
