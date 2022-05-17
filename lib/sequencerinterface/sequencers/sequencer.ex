@@ -8,6 +8,7 @@ defmodule Sequencerinterface.Sequencers.Sequencer do
     field :scale, :integer
     field :velocity, :integer
     field :sequencergroup, :integer
+    field :feedback_color, :integer
 
     field :position , {:array, :integer}
 
@@ -17,7 +18,7 @@ defmodule Sequencerinterface.Sequencers.Sequencer do
   @doc false
   def changeset(sequencer, attrs) do
     sequencer
-    |> cast(attrs, [:color, :velocity, :scale, :padid, :sequencergroup, :position])
-    |> validate_required([:color, :velocity, :scale, :padid, :sequencergroup, :position])
+    |> cast(attrs, [:color, :velocity, :scale, :padid, :sequencergroup, :position, :feedback_color])
+    |> validate_required([:color, :velocity, :scale, :padid, :sequencergroup, :position, :feedback_color])
   end
 end

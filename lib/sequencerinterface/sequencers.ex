@@ -84,11 +84,18 @@ defmodule Sequencerinterface.Sequencers do
 
   end
 
+  def toggle_feedback_color(padid, color) do
+    {1, [sequencer]} =
+      from(s in Sequencer, where: s.padid == ^padid, select: s)
+      |> Repo.update_all(set: [feedback_color: color])
+    broadcast({:ok, sequencer}, :updated_sequencerpad)
+  end
+
   def clear_sequencerpad_group(group) do
 
     {_, sequencer} =
       from(s in Sequencer, where: s.sequencergroup == ^group, select: s)
-      |> Repo.update_all(set: [color: -1])
+      |> Repo.update_all(set: [color: -1, feedback_color: -1])
 
     broadcast({:ok, sequencer}, :clear_sequencerpad)
 

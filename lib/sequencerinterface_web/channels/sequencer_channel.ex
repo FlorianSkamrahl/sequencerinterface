@@ -21,11 +21,24 @@ defmodule SequencerinterfaceWeb.SequencerChannel do
   # broadcast to everyone in the current topic (sequencer:lobby).
   @impl true
   def handle_in("shout", %{"msg" => msg}, socket) do
-    IO.puts(msg)
+    #IO.puts(msg)
     #Phoenix.PubSub.broadcast(Sequencerinterface.PubSub, "sequencers", {"python_response", msg})
     #SequencerinterfaceWeb.Endpoint.broadcast!("sequencer:lobby", "calibrate", %{})
-    #SequencerinterfaceWeb.Endpoint.broadcast!(Sequencerinterface.PubSub, "sequencers", {"python_response", msg})
+    #SequencerinterfaceWeb.Endpoint.broadcast!(Sequencerinterface.PubSub  , "sequencers", {"pythonresponse", msg})
+    SequencerinterfaceWeb.Endpoint.broadcast("sequencers", "python_response", %{message: msg})
+
+
+    #SequencerinterfaceWeb.Endpoint.broadcast!(Sequencerinterface.PubSub, "sequencers", {:pythonresponse, %{"msg" => msg}})
+
+
+
     #broadcast(socket, "shout", msg)
+    {:noreply, socket}
+  end
+
+  def handle_in("sequencer_feedback", payload, socket) do
+    #broadcast payload to liveView
+    SequencerinterfaceWeb.Endpoint.broadcast("sequencers", "sequencer_feedback", payload)
     {:noreply, socket}
   end
 

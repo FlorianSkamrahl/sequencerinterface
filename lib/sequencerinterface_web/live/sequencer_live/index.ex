@@ -54,11 +54,28 @@ defmodule SequencerinterfaceWeb.SequencerLive.Index do
     {:noreply, socket}
   end
 
-  def handle_event("python_response", %{"msg" => msg}, socket) do
-    IO.put("jooooooooooooooooooooo")
+  #Invoked to handle messages from other Elixir processes. -> this time from the sequencerchannel
+  def handle_info(%Phoenix.Socket.Broadcast{event: "python_response", payload: %{message: msg}}, socket) do
     #list all routes mix phx.routes
+    Process.send_after(self(), :clear_flash, 3000)
     {:noreply, socket
     |> put_flash(:info, msg)}
+  end
+
+  def handle_info(:clear_flash, socket) do
+    {:noreply, clear_flash(socket)}
+  end
+
+  def handle_info(%Phoenix.Socket.Broadcast{event: "sequencer_feedback", payload: %{"color" => color, "padid" => padid, "position" => [y, x]}}, socket) do
+    #IO.puts(color)
+    #IO.puts(padid)
+    #IO.puts("[#{y}, #{x}]")
+    {:ok, color} = Sequencers.toggle_feedback_color(padid, color)
+    {:noreply, assign(socket, :color, color)}
+    #list all routes mix phx.routes
+    #{:noreply, socket
+    #|> put_flash(:info, msg)}
+    #{:noreply, socket}
   end
 
 

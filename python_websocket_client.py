@@ -22,6 +22,12 @@ async def main():
                 payload = json_response["payload"]
                 calibration_map[payload["padid"]] = payload["color"]
                 print(json_response["payload"])
+                await websocket.send(json.dumps({
+                    "event": "sequencer_feedback",
+                    "topic": "sequencer:lobby",
+                    "payload": json_response["payload"],
+                    "ref": ""}
+                ))
             elif json_response["event"] == "clear":
                 calibration_map.clear()
             elif json_response["event"] == "calibrate":
@@ -30,12 +36,12 @@ async def main():
                 await websocket.send(json.dumps({
                     "event": "shout",
                     "topic": "sequencer:lobby",
-                    "payload": {"msg": "Calibration successful!"},
+                    "payload": {"msg": "Calibration successful!!!"},
                     "ref": "sequencers:one"}
                 ))
 
 
-loop = asyncio.get_event_loop()
+loop = asyncio.run(main())
 try:
     asyncio.ensure_future(main())
     loop.run_forever()

@@ -5,7 +5,7 @@ defmodule SequencerinterfaceWeb.SequencerLive.SequencerpadComponent do
   def render(assigns) do
     #{if @todo.__meta__.state == :deleted do hidden end}
     ~H"""
-    <div id={"pad-#{@sequencer.id}"} class="w-full border-stone-300 border-2 rounded shadow-lg hover:shadow-2xl hover:cursor-pointer">
+    <div id={"pad-#{@sequencer.id}"} class={"w-full border-stone-300 border-2 rounded shadow-lg hover:shadow-2xl hover:cursor-pointer #{if @sequencer.feedback_color == 0 do "bg-blue-200" end} #{if @sequencer.feedback_color == 1 do "bg-red-200" end} #{if @sequencer.feedback_color == 2 do "bg-green-200" end} #{if @sequencer.feedback_color == 3 do "bg-yellow-200" end}"}>
     <div class="flex justify-center py-4">
       <div>
         <div class="text-center">
