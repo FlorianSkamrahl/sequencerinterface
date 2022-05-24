@@ -4,9 +4,20 @@ import json
 
 calibration_map = dict()
 
+# 192.168.1.118
+# ("None", "green", "red", "blue", "yellow")
+color_dict = {
+    -1: "None",
+    0: "blue",
+    1: "red",
+    2: "green",
+    3: "yellow"
+}
+
 async def main():
 
-    async with websockets.connect('ws://127.0.0.1:4000/sequencersocket/websocket') as websocket:
+    #'ws://127.0.0.1:4000/sequencersocket/websocket'
+    async with websockets.connect('ws://192.168.1.118:4000/sequencersocket/websocket') as websocket:
         await websocket.send(json.dumps({
                     "event":"phx_join",
                     "topic":"sequencer:lobby",

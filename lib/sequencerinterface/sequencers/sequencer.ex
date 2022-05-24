@@ -19,6 +19,6 @@ defmodule Sequencerinterface.Sequencers.Sequencer do
   def changeset(sequencer, attrs) do
     sequencer
     |> cast(attrs, [:color, :velocity, :scale, :padid, :sequencergroup, :position, :feedback_color])
-    |> validate_required([:color, :velocity, :scale, :padid, :sequencergroup, :position, :feedback_color])
+    |> validate_required([:color, :velocity, :scale, :padid, :sequencergroup, :position])
   end
 end

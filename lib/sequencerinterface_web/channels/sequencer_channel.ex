@@ -43,6 +43,11 @@ defmodule SequencerinterfaceWeb.SequencerChannel do
   end
 
   def handle_in("updated_sequencerpad", %{"color" => color, "position" => position, "padid" => padid}, socket) do
+    #colors:
+    #0 - blue
+    #1 - red
+    #2 - green
+    #3 - yellow
     broadcast!(socket, "updated_sequencerpad", %{position: position, color: color, padid: padid})
     {:noreply, socket}
   end
