@@ -7,11 +7,11 @@ calibration_map = dict()
 # 192.168.1.118
 # ("None", "green", "red", "blue", "yellow")
 color_dict = {
-    -1: "None",
-    0: "blue",
-    1: "red",
-    2: "green",
-    3: "yellow"
+    0: "None",
+    1: "green",
+    2: "red",
+    3: "blue",
+    4: "yellow"
 }
 
 async def main():

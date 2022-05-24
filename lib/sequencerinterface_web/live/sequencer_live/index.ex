@@ -50,6 +50,8 @@ defmodule SequencerinterfaceWeb.SequencerLive.Index do
 
   def handle_event("calibrate", _value, socket) do
     #list all routes mix phx.routes
+
+    #todo calibrate sends a calibration dict
     SequencerinterfaceWeb.Endpoint.broadcast!("sequencer:lobby", "calibrate", %{})
     {:noreply, socket}
   end
