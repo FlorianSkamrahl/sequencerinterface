@@ -95,7 +95,7 @@ defmodule Sequencerinterface.Sequencers do
 
     {_, sequencer} =
       from(s in Sequencer, where: s.sequencergroup == ^group, select: s)
-      |> Repo.update_all(set: [color: -1, feedback_color: 0])
+      |> Repo.update_all(set: [color: -1, feedback_color: [255, 255,255]])
 
     broadcast({:ok, sequencer}, :clear_sequencerpad)
 

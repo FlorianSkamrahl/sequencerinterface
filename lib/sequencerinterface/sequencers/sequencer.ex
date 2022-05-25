@@ -8,7 +8,7 @@ defmodule Sequencerinterface.Sequencers.Sequencer do
     field :scale, :integer
     field :velocity, :integer
     field :sequencergroup, :integer
-    field :feedback_color, :integer
+    field :feedback_color, {:array, :integer}
 
     field :position , {:array, :integer}
 

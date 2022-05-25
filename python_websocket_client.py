@@ -1,6 +1,7 @@
 import asyncio
 import websockets
 import json
+from random import randrange
 
 calibration_map = dict()
 
@@ -34,6 +35,8 @@ async def main():
                 payload = json_response["payload"]
                 calibration_map[payload["padid"]] = payload["color"]
                 print(json_response["payload"])
+                #feedback random rgb color
+                json_response["payload"]["color"] = [randrange(255), randrange(255), randrange(255)]
                 await websocket.send(json.dumps({
                     "event": "sequencer_feedback",
                     "topic": "sequencer:lobby",
