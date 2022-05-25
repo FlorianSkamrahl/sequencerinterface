@@ -74,7 +74,7 @@ defmodule SequencerinterfaceWeb.SequencerLive.Index do
   def handle_info(%Phoenix.Socket.Broadcast{event: "sequencer_feedback", payload: %{"color" => color, "padid" => padid, "position" => [y, x]}}, socket) do
     #IO.puts(color)
     #IO.puts(padid)
-    IO.puts("[#{y}, #{x}]")
+    #IO.puts("[#{y}, #{x}]")
     {:ok, color} = Sequencers.toggle_feedback_color(padid, color)
     {:noreply, assign(socket, :color, color)}
     #list all routes mix phx.routes
