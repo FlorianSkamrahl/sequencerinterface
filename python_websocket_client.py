@@ -4,6 +4,16 @@ import json
 
 calibration_map = dict()
 
+# 192.168.1.118
+# ("None", "green", "red", "blue", "yellow")
+color_dict = {
+    0: "None",
+    1: "green",
+    2: "red",
+    3: "blue",
+    4: "yellow"
+}
+
 async def main():
 
     #'ws://127.0.0.1:4000/sequencersocket/websocket'
