@@ -13,16 +13,16 @@ defmodule SequencerinterfaceWeb.SequencerLive.SequencerpadComponent do
         </div>
         <div class="flex justify-center gap-2">
           <div class="form-check">
-            <%= checkbox(:sequencer, :color, phx_click: "toggle_color", phx_target: @myself, phx_value_color: 1, phx_value_padid: @sequencer.padid, value: @sequencer.color == 1, class: "form-check-input appearance-none h-6 w-6 border border-gray-300 rounded-sm bg-white hover:bg-green-600 checked:bg-green-600 checked:border-green-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer") %>
+            <%= checkbox(:sequencer, :color, phx_click: "toggle_color", phx_target: @myself, phx_value_color: 1, phx_value_padid: @sequencer.padid, value: @sequencer.color == 1, class: "form-check-input appearance-none h-6 w-6 border border-green-300 rounded-sm bg-white hover:bg-green-600 checked:bg-green-600 checked:border-green-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer") %>
           </div>
           <div class="form-check">
-            <%= checkbox(:sequencer, :color, phx_click: "toggle_color", phx_target: @myself, phx_value_color: 2, phx_value_padid: @sequencer.padid, value: @sequencer.color == 2, class: "form-check-input appearance-none h-6 w-6 border border-gray-300 rounded-sm bg-white hover:bg-red-600 checked:bg-red-600 checked:border-red-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer") %>
+            <%= checkbox(:sequencer, :color, phx_click: "toggle_color", phx_target: @myself, phx_value_color: 2, phx_value_padid: @sequencer.padid, value: @sequencer.color == 2, class: "form-check-input appearance-none h-6 w-6 border border-red-300 rounded-sm bg-white hover:bg-red-600 checked:bg-red-600 checked:border-red-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer") %>
           </div>
           <div class="form-check">
-            <%= checkbox(:sequencer, :color, phx_click: "toggle_color", phx_target: @myself, phx_value_color: 3, phx_value_padid: @sequencer.padid, value: @sequencer.color == 3, class: "form-check-input appearance-none h-6 w-6 border border-gray-300 rounded-sm bg-white hover:bg-blue-600 checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer") %>
+            <%= checkbox(:sequencer, :color, phx_click: "toggle_color", phx_target: @myself, phx_value_color: 3, phx_value_padid: @sequencer.padid, value: @sequencer.color == 3, class: "form-check-input appearance-none h-6 w-6 border border-blue-300 rounded-sm bg-white hover:bg-blue-600 checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer") %>
           </div>
           <div class="form-check">
-            <%= checkbox(:sequencer, :color, phx_click: "toggle_color", phx_target: @myself, phx_value_color: 4, phx_value_padid: @sequencer.padid, value: @sequencer.color == 4, class: "form-check-input appearance-none h-6 w-6 border border-gray-300 rounded-sm bg-white hover:bg-yellow-600 checked:bg-yellow-600 checked:border-yellow-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer") %>
+            <%= checkbox(:sequencer, :color, phx_click: "toggle_color", phx_target: @myself, phx_value_color: 4, phx_value_padid: @sequencer.padid, value: @sequencer.color == 4, class: "form-check-input appearance-none h-6 w-6 border border-yellow-300 rounded-sm bg-white hover:bg-yellow-600 checked:bg-yellow-600 checked:border-yellow-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer") %>
           </div>
         </div>
       </div>
