@@ -41,6 +41,7 @@ defmodule SequencerinterfaceWeb.SequencerLive.Index do
     {:noreply, assign(socket, :sequencerpad, list_sequencerpad())}
   end
 
+  @impl true
   def handle_event("clear", _value, socket) do
     {_, all_pads} = Sequencers.clear_sequencerpad_group(0)
     SequencerinterfaceWeb.Endpoint.broadcast!("sequencer:lobby", "clear", %{})
@@ -50,11 +51,15 @@ defmodule SequencerinterfaceWeb.SequencerLive.Index do
 
   def handle_event("calibrate", _value, socket) do
     #list all routes mix phx.routes
+    calibration_map = Sequencers.get_calibration_map(0)
+    IO.inspect calibration_map
+
     SequencerinterfaceWeb.Endpoint.broadcast!("sequencer:lobby", "calibrate", %{})
     {:noreply, socket}
   end
 
   #Invoked to handle messages from other Elixir processes. -> this time from the sequencerchannel
+  @impl true
   def handle_info(%Phoenix.Socket.Broadcast{event: "python_response", payload: %{message: msg}}, socket) do
     #list all routes mix phx.routes
     Process.send_after(self(), :clear_flash, 3000)
@@ -69,7 +74,7 @@ defmodule SequencerinterfaceWeb.SequencerLive.Index do
   def handle_info(%Phoenix.Socket.Broadcast{event: "sequencer_feedback", payload: %{"color" => color, "padid" => padid, "position" => [y, x]}}, socket) do
     #IO.puts(color)
     #IO.puts(padid)
-    #IO.puts("[#{y}, #{x}]")
+    IO.puts("[#{y}, #{x}]")
     {:ok, color} = Sequencers.toggle_feedback_color(padid, color)
     {:noreply, assign(socket, :color, color)}
     #list all routes mix phx.routes

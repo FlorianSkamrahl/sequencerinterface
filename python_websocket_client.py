@@ -6,7 +6,9 @@ calibration_map = dict()
 
 async def main():
 
-    async with websockets.connect('ws://127.0.0.1:4000/sequencersocket/websocket') as websocket:
+    #'ws://127.0.0.1:4000/sequencersocket/websocket'
+    #'ws://sequencerinterface.local:4000/sequencersocket/websocket'
+    async with websockets.connect('ws://sequencerinterface.local:4000/sequencersocket/websocket') as websocket:
         await websocket.send(json.dumps({
                     "event":"phx_join",
                     "topic":"sequencer:lobby",

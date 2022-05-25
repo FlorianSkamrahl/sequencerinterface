@@ -19,12 +19,7 @@ ARG DEBIAN_VERSION=bullseye-20210902-slim
 ARG BUILDER_IMAGE="hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
 ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
 
-
 FROM ${BUILDER_IMAGE} as builder
-#alternative with apline
-#elixir:1.13-alpine
-#elixir:1.13
-#FROM elixir:1.13 as builder
 
 # install build dependencies
 RUN apt-get update -y && apt-get install -y build-essential git \
@@ -72,7 +67,6 @@ RUN mix release
 # start a new build stage so that the final image will only contain
 # the compiled release and other runtime necessities
 FROM ${RUNNER_IMAGE}
-#FROM elixir:1.13
 
 RUN apt-get update -y && apt-get install -y libstdc++6 openssl libncurses5 locales \
   && apt-get clean && rm -f /var/lib/apt/lists/*_*
@@ -93,24 +87,6 @@ ENV MIX_ENV="prod"
 # Only copy the final release from the build stage
 COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/sequencerinterface ./
 
-# rights on rpi not set so do it manually :()
-RUN chmod a+rx /app/bin/server
-
 USER nobody
 
 CMD ["/app/bin/server"]
-
-#RUN apt-get update && \
-#    apt-get install -y postgresql-client && \
-#    apt-get install -y inotify-tools && \
-#    apt-get install -y nodejs && \
-#    curl -L https://npmjs.org/install.sh | sh && \
-#    mix local.hex --force && \
-#    mix archive.install hex phx_new 1.6.9 --force && \
-#    mix local.rebar --force
-
-#ENV APP_HOME /app
-#RUN mkdir $APP_HOME
-#WORKDIR $APP_HOME
-
-#CMD ["mix", "phx.server"]

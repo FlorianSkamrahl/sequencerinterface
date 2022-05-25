@@ -24,6 +24,11 @@ alternatively you can also work directly with docker-compose
   * (optional) to create initial database for the app run the folowing script `docker-compose run elixir /app/bin/sequencerinterface eval "Sequencerinterface.Release.create"`
   * (optional) alternatively you can also log into the database via psql in a second terminal `psql -h localhost -p 6000 -d postgres -U postgres --password`
   * (optional) then migrate with `docker-compose run elixir /app/bin/sequencerinterface eval "Sequencerinterface.Release.migrate"`
+  * (optional) to create initial database for the app run the folowing script `docker-compose run elixir /app/bin/sequencerinterface eval "Sequencerinterface.Release.seeds"`
+
+  Now you can visit [`http://sequencerinterface.local:4000/sequencerpad`](http://sequencerinterface.local:4000/sequencerpad) from your browser.
+
+  
 
 if you want to jump inside the elixir debian-buster distro run
 

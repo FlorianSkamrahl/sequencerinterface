@@ -12,7 +12,7 @@ config :sequencerinterface,
 
 # Configures the endpoint
 config :sequencerinterface, SequencerinterfaceWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: "0.0.0.0", host: "localhost", host: "192.168.1.204", host: "127.0.0.1", host: "sequencerinterface.local"],
   render_errors: [view: SequencerinterfaceWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Sequencerinterface.PubSub,
   live_view: [signing_salt: "C/D0T07w"]
