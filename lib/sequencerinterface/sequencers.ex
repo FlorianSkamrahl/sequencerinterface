@@ -102,17 +102,7 @@ defmodule Sequencerinterface.Sequencers do
   end
 
   def get_calibration_map(group) do
-
-
-    #s.sequencergroup == ^group and
-    {_, sequencer} =
-      Repo.all(from(s in Sequencer, where: s.sequencergroup == ^group and s.color > ^0, select: {s.padid, s.position, s.color}))
-
-
-
-
-    #broadcast({:ok, sequencer}, :clear_sequencerpad)
-
+    Repo.all(from(s in Sequencer, where: s.sequencergroup == ^group and s.color > ^0, select: {s.padid, s.position, s.color}))
   end
 
   @doc """

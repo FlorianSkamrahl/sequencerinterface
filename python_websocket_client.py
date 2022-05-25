@@ -44,7 +44,8 @@ async def main():
                 calibration_map.clear()
             elif json_response["event"] == "calibrate":
                 print("calibrate")
-                print(calibration_map)
+                payload = json_response["payload"]
+                print(payload)
                 await websocket.send(json.dumps({
                     "event": "shout",
                     "topic": "sequencer:lobby",

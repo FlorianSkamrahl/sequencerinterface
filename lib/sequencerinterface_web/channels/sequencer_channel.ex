@@ -57,8 +57,8 @@ defmodule SequencerinterfaceWeb.SequencerChannel do
     {:noreply, socket}
   end
 
-  def handle_in("calibrate", %{}, socket) do
-    broadcast!(socket, "calibrate", %{})
+  def handle_in("calibrate", calibration_payload, socket) do
+    broadcast!(socket, "calibrate", calibration_payload)
     {:noreply, socket}
   end
 

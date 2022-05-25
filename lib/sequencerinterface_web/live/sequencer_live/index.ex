@@ -52,9 +52,9 @@ defmodule SequencerinterfaceWeb.SequencerLive.Index do
   def handle_event("calibrate", _value, socket) do
     #list all routes mix phx.routes
     calibration_map = Sequencers.get_calibration_map(0)
-    #todo calibrate sends a calibration dict
-    IO.inspect calibration_map
-    SequencerinterfaceWeb.Endpoint.broadcast!("sequencer:lobby", "calibrate", %{})
+    #calibration_payload = %{"Header" => {"padid", "position", "color"}, "Data" => calibration_map}
+    #remap query values to make the payload jason serializable
+    SequencerinterfaceWeb.Endpoint.broadcast!("sequencer:lobby", "calibrate", Enum.into(calibration_map, [], fn {padid, position, color} -> %{padid: padid, position: position, color: color} end))
     {:noreply, socket}
   end
 
