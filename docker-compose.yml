@@ -31,7 +31,7 @@ services:
     #  - .:/app
     environment:
       SSL_KEY_PATH: ${SSL_KEY_PATH}
-      SSL_CERT_PATH: ${SSL_KEY_PATH}
+      SSL_CERT_PATH: ${SSL_CERT_PATH}
       #- SECRET_KEY_BASE=${SECRET_KEY_BASE}
       # Modify your config files (dev.exs and test.exs) so that the password and hostname can be overridden
       # when environment variables are set:
