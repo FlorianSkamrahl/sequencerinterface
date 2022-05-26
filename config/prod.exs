@@ -20,7 +20,7 @@ config :logger, level: :info
 # to the previous section and set your `:url` port to 443:
 #
 config :sequencerinterface, SequencerinterfaceWeb.Endpoint,
-        url: [host: "example.com", port: 443],
+        url: [host: "sequencerinterface.local", port: 443],
         https: [
           port: 443,
           cipher_suite: :strong,
