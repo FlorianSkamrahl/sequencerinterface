@@ -42,3 +42,66 @@ if you want to jump inside the elixir debian-buster distro run
   * Source: https://github.com/phoenixframework/phoenix
 
 
+## Websocket events
+Websocket Path is `ws://sequencerinterface.local:4000/sequencersocket/websocket`
+or local `ws://127.0.0.1:4000/sequencersocket/websocket` 
+
+  `
+  response = await websocket.recv()
+  json_response = json.loads(response)
+  `
+
+### Subscribe to Websocket Channel with 
+send this payload to the websocket to subscripe: 
+  `{
+                    "event":"phx_join",
+                    "topic":"sequencer:lobby",
+                    "payload": {},
+                    "ref": "sequencers:one"}`
+
+### Events 
+* json_response["event"] == "updated_sequencerpad"
+json_response["payload"] ==  {'color': ..., 'padid': ..., 'position': [x, y]} 
+
+* json_response["event"] == "clear"
+no payload 
+
+* json_response["event"] == "calibrate"
+json_response["payload"] ==  [{'color': ..., 'padid': ..., 'position': [x, y]} ... {'color': ..., 'padid': ..., 'position': [x, y]}]
+List of all calibrated Fields 
+
+* json_response["event"] == "delete_calibration"
+no payload 
+
+* json_response["event"] == "save_calibration"
+no payload 
+
+* json_response["event"] == "toggle_true_color"
+no payload 
+
+
+### Websocket Send events
+Attention color must now be an rgb list to color the card as response!
+Sequencer Feedback
+json_response["payload"] == {'color': [r, g, b], 'padid': ..., 'position': [x, y]} 
+`{
+                    "event": "sequencer_feedback",
+                    "topic": "sequencer:lobby",
+                    "payload": json_response["payload"],
+                    "ref": ""}`
+
+Shout -> Show message over alert
+payload == {"msg": ...msg Text as String ...} 
+`{
+                    "event": "shout",
+                    "topic": "sequencer:lobby",
+                    "payload": {"msg": "Calibration successful!!!"},
+                    "ref": "sequencers:one"}`
+
+
+
+
+
+
+
+

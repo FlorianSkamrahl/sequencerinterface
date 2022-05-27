@@ -57,6 +57,21 @@ defmodule SequencerinterfaceWeb.SequencerChannel do
     {:noreply, socket}
   end
 
+  def handle_in("delete_calibration", %{}, socket) do
+    broadcast!(socket, "delete_calibration", %{})
+    {:noreply, socket}
+  end
+
+  def handle_in("save_calibration", %{}, socket) do
+    broadcast!(socket, "save_calibration", %{})
+    {:noreply, socket}
+  end
+
+  def handle_in("toggle_true_color", %{}, socket) do
+    broadcast!(socket, "toggle_true_color", %{})
+    {:noreply, socket}
+  end
+
   def handle_in("calibrate", calibration_payload, socket) do
     broadcast!(socket, "calibrate", calibration_payload)
     {:noreply, socket}

@@ -42,7 +42,7 @@ def handle_event("toggle_color", %{"color" => color, "padid" => padid}, socket) 
   #event is handeled here so dont forget to set the phx-target={@myself}
 
   #if value is unchecked no value attribute is passed -> clear with color set to -1
-  {:ok, color} = Sequencers.toggle_color(padid, -1)
+  {:ok, color} = Sequencers.toggle_color(padid, 0)
   {:noreply, assign(socket, :color, color)}
 
 end

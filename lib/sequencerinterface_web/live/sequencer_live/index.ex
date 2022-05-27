@@ -58,6 +58,21 @@ defmodule SequencerinterfaceWeb.SequencerLive.Index do
     {:noreply, socket}
   end
 
+  def handle_event("delete_calibration", _value, socket) do
+    SequencerinterfaceWeb.Endpoint.broadcast!("sequencer:lobby", "delete_calibration", %{})
+    {:noreply, socket}
+  end
+
+  def handle_event("save_calibration", _value, socket) do
+    SequencerinterfaceWeb.Endpoint.broadcast!("sequencer:lobby", "save_calibration", %{})
+    {:noreply, socket}
+  end
+
+  def handle_event("toggle_true_color", _value, socket) do
+    SequencerinterfaceWeb.Endpoint.broadcast!("sequencer:lobby", "toggle_true_color", %{})
+    {:noreply, socket}
+  end
+
   #Invoked to handle messages from other Elixir processes. -> this time from the sequencerchannel
   @impl true
   def handle_info(%Phoenix.Socket.Broadcast{event: "python_response", payload: %{message: msg}}, socket) do

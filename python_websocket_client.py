@@ -45,6 +45,12 @@ async def main():
                 ))
             elif json_response["event"] == "clear":
                 calibration_map.clear()
+            elif json_response["event"] == "delete_calibration":
+                print("delete")
+            elif json_response["event"] == "save_calibration":
+                print("save")
+            elif json_response["event"] == "toggle_true_color":
+                print("toggle_true_color")
             elif json_response["event"] == "calibrate":
                 print("calibrate")
                 payload = json_response["payload"]
